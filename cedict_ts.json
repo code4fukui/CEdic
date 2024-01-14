@@ -1,0 +1,12 @@
+{
+  "version": "1",
+  "subversion": "0",
+  "format": "ts",
+  "charset": "UTF-8",
+  "entries": "122436",
+  "publisher": "MDBG",
+  "license": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "date": "2024-01-14T10:09:17Z",
+  "time": "1705226957",
+  "csv": "cedict_ts.csv"
+}
