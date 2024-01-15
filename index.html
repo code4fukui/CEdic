@@ -1,4 +1,7 @@
-<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"><link rel="icon" href="data:">
+<!DOCTYPE html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<link rel="icon" href="./icon.png">
+<link rel="apple-touch-icon" href="./icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
 <title>CE典</title>
 <body>
 <div id=divin>
@@ -9,20 +12,22 @@
 <footer>
 <a id=credit></a>
 <h1>CE典 - Chinese English Dictionary</h1>
-inspierd from : <a href=https://www.moedict.tw/>萌展</a><br>
+inspierd from: <a href=https://www.moedict.tw/>萌展</a><br>
 data: CC BY-SA <a href=https://cc-cedict.org/editor/editor.php?handler=Main>CC-CEDICT Editor</a><br>
-lib: MIT <a href=https://github.com/code4fukui/Pinyin/>Pinyin.js</a><br>
-app: MIT <a href=https://github.com/code4fukui/CEdic>src on GitHub</a><br>
+lib: MIT <a href=https://github.com/code4fukui/Pinyin/>Pinyin.js</a>, <a href=https://github.com/code4fukui/IndexDB/>IndexDB</a><br>
+app: MIT <a href=https://github.com/code4fukui/CEdic>src on GitHub</a> (<a href=https://fukuno.jig.jp/4190>blog 一日一創</a>)<br>
 </footer>
 
 
 <script type="module">
 import { CSV } from "https://js.sabae.cc/CSV.js";
 import { Pinyin } from "https://code4fukui.github.io/Pinyin/Pinyin.js";
+import { fetchOrLoad } from "https://code4fukui.github.io/IndexDB/Cache.js";
 
 intext.disabled = true;
 intext.value = "loading...";
-const data = await CSV.fetchJSON("cedict_ts.csv");
+const bin = await fetchOrLoad("./cedict_ts.csv");
+const data = CSV.parse(new TextDecoder().decode(bin));
 data.forEach(i => i.pron = Pinyin.decode(i.pron));
 intext.disabled = false;
 intext.value = "";
@@ -165,7 +170,7 @@ intext.oninput();
 body {
   font-family: sans-serif;
   margin: 0;
-  padding-bottom: 70vh;
+  padding-bottom: 50vh;
 }
 #divin {
   background-color: gray;
