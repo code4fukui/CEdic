@@ -103,17 +103,18 @@ intext.oninput = () => {
   }
   */
   const val = (i) => {
-    const d = i.means.indexOf("variant of ") >= 0 ? -1 : 0;
+    let pnt = i.means.indexOf("variant of ") >= 0 ? 0 : 1;
     if (i.kanji == key || i.kanji_s == key) {
-      return 8 + d;
+      pnt += 8;
+    } else if (i.kanji.startsWith(key) || i.kanji_s.startsWith(key)) {
+      pnt += 6;
+    } else if (i.kanji.indexOf(key) >= 0 || i.kanji_s.indexOf(key) >= 0) {
+      pnt += 4;
+    } else {
+      pnt += 2;
     }
-    if (i.kanji.startsWith(key) || i.kanji_s.startsWith(key)) {
-      return 6 + d;
-    }
-    if (i.kanji.indexOf(key) >= 0 || i.kanji_s.indexOf(key) >= 0) {
-      return 4 + d;
-    }
-    return 2 + d;
+    pnt += 1 - i.kanji.length / 10;
+    return pnt;
   };
   data2.sort((a, b) => val(b) - val(a));
   const flgmore = data2.length > maxcnt;
