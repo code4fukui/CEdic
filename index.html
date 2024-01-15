@@ -27,6 +27,11 @@ data.forEach(i => i.pron = Pinyin.decode(i.pron));
 intext.disabled = false;
 intext.value = "";
 
+const isKanji = (c) => {
+  c = c.charCodeAt(0);
+  return c >= 0x4e00 && c <= 0x9fff;
+};
+
 const renderListSimple = (div, data2) => {
   div.innerHTML = data2.map(i => {
     const res = [];
@@ -47,7 +52,7 @@ const setWithLink = (div, s) => {
   s = s.replace(/\//g, " / ");
   const ss = [];
   for (const c of s) {
-    if (c.charCodeAt(0) < 0x100) {
+    if (!isKanji(c)) {
       ss.push(c);
     } else {
       div.appendChild(document.createTextNode(ss.join("")));
