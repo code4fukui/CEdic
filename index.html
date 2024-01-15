@@ -11,16 +11,19 @@
 <h1>CE典 - Chinese English Dictionary</h1>
 inspierd from : <a href=https://www.moedict.tw/>萌展</a><br>
 data: CC BY-SA <a href=https://cc-cedict.org/editor/editor.php?handler=Main>CC-CEDICT Editor</a><br>
+lib: MIT <a href=https://github.com/code4fukui/Pinyin/>Pinyin.js</a><br>
 app: MIT <a href=https://github.com/code4fukui/CEdic>src on GitHub</a><br>
 </footer>
 
 
 <script type="module">
 import { CSV } from "https://js.sabae.cc/CSV.js";
+import { Pinyin } from "https://code4fukui.github.io/Pinyin/Pinyin.js";
 
 intext.disabled = true;
 intext.value = "loading...";
 const data = await CSV.fetchJSON("cedict_ts.csv");
+data.forEach(i => i.pron = Pinyin.decode(i.pron));
 intext.disabled = false;
 intext.value = "";
 
