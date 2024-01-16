@@ -22,11 +22,12 @@ app: MIT <a href=https://github.com/code4fukui/CEdic>src on GitHub</a> (<a href=
 <script type="module">
 import { CSV } from "https://js.sabae.cc/CSV.js";
 import { Pinyin } from "https://code4fukui.github.io/Pinyin/Pinyin.js";
-import { fetchOrLoad } from "https://code4fukui.github.io/IndexDB/Cache.js";
+import { Cache } from "https://code4fukui.github.io/IndexDB/Cache.js";
 
 intext.disabled = true;
 intext.value = "loading...";
-const bin = await fetchOrLoad("./cedict_ts.csv");
+const cache = await Cache.create("cache-cedic");
+const bin = await cache.fetchOrLoad("./cedict_ts.csv");
 const data = CSV.parse(new TextDecoder().decode(bin));
 data.forEach(i => i.pron = Pinyin.decode(i.pron));
 intext.disabled = false;
