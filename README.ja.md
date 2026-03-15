@@ -1,6 +1,6 @@
 # CE典 - 中英単語辞書
 
-[CE典](https://code4fukui.github.io/CEdic/)は、中英辞典Webアプリケーションです。
+[CE典](https://code4fukui.github.io/CEdic/)は、中国語-英語の単語定義を検索・表示できるオープンソースのWebアプリケーションです。
 
 ## 機能
 - 中国語-英語の単語定義の検索と表示

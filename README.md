@@ -1,5 +1,7 @@
 # CEdic - Chinese English Dictionary
 
+> 日本語のREADMEはこちらです: [README.ja.md](README.ja.md)
+
 [CE典](https://code4fukui.github.io/CEdic/) is a Chinese-English dictionary web application.
 
 ## Features
